@@ -10071,3 +10071,32 @@ FOREIGN KEY ("move_id")
   [1m[36mCACHE Pokemon Load (0.0ms)[0m  [1m[34mSELECT "pokemons".* FROM "pokemons" WHERE "pokemons"."id" = $1 LIMIT $2[0m  [["id", 125], ["LIMIT", 1]]
   [1m[36mItem Create (0.3ms)[0m  [1m[32mINSERT INTO "items" ("pokemon_id", "name", "price", "happiness", "image_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["pokemon_id", 125], ["name", "Rustic Leather Pants"], ["price", 86], ["happiness", 60], ["image_url", "/images/pokemon_egg.svg"], ["created_at", "2023-08-03 22:06:06.358821"], ["updated_at", "2023-08-03 22:06:06.358821"]]
   [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mPokemon Load (1.5ms)[0m  [1m[34mSELECT "pokemons".* FROM "pokemons"[0m
+  [1m[36mPokemon Load (0.3ms)[0m  [1m[34mSELECT "pokemons".* FROM "pokemons" ORDER BY "pokemons"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mMove Load (2.2ms)[0m  [1m[34mSELECT "moves".* FROM "moves" INNER JOIN "poke_moves" ON "moves"."id" = "poke_moves"."move_id" WHERE "poke_moves"."pokemon_id" = $1[0m  [["pokemon_id", 1]]
+  [1m[36mPokemon Load (0.6ms)[0m  [1m[34mSELECT "pokemons".* FROM "pokemons" ORDER BY "pokemons"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mItem Load (1.1ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."pokemon_id" = $1[0m  [["pokemon_id", 1]]
+  [1m[36mMove Load (0.4ms)[0m  [1m[34mSELECT "moves".* FROM "moves" ORDER BY "moves"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPokemon Load (0.7ms)[0m  [1m[34mSELECT "pokemons".* FROM "pokemons" INNER JOIN "poke_moves" ON "pokemons"."id" = "poke_moves"."pokemon_id" WHERE "poke_moves"."move_id" = $1[0m  [["move_id", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPokemon Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "pokemons" WHERE "pokemons"."name" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPokemon Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "pokemons" WHERE "pokemons"."number" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mPokemon Load (0.3ms)[0m  [1m[34mSELECT "pokemons".* FROM "pokemons" ORDER BY "pokemons"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPokemon Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "pokemons" WHERE "pokemons"."name" = $1 LIMIT $2[0m  [["name", "Bulbasaur"], ["LIMIT", 1]]
+  [1m[36mPokemon Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "pokemons" WHERE "pokemons"."number" = $1 LIMIT $2[0m  [["number", 0], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mPokemon Load (0.2ms)[0m  [1m[34mSELECT "pokemons".* FROM "pokemons" ORDER BY "pokemons"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPokemon Load (0.2ms)[0m  [1m[34mSELECT "pokemons".* FROM "pokemons" ORDER BY "pokemons"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mMove Load (0.3ms)[0m  [1m[34mSELECT "moves".* FROM "moves" INNER JOIN "poke_moves" ON "moves"."id" = "poke_moves"."move_id" WHERE "poke_moves"."pokemon_id" = $1 ORDER BY "moves"."id" ASC LIMIT $2[0m  [["pokemon_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPokeMove Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "poke_moves" WHERE "poke_moves"."move_id" = $1 AND "poke_moves"."pokemon_id" = $2 LIMIT $3[0m  [["move_id", 1], ["pokemon_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMove Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "moves" WHERE "moves"."name" = $1 LIMIT $2[0m  [["name", "ow"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mMove Load (0.4ms)[0m  [1m[34mSELECT "moves".* FROM "moves" ORDER BY "moves"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMove Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "moves" WHERE "moves"."name" = $1 LIMIT $2[0m  [["name", "tackle"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m

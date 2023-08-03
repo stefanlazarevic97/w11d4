@@ -44,8 +44,8 @@ class Pokemon < ApplicationRecord
     validates :poke_type,
         inclusion: { in: TYPES, message: "'%{value}' is not a valid Pokemon type" }
     validates :image_url, presence: true
-    validates :captured, inclusion: [true, false]
-
+    validates :captured, 
+        inclusion: { in: [true, false], message: "must be true or false" }
 
     has_many :items,
         dependent: :destroy
